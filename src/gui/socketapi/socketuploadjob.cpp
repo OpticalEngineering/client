@@ -87,7 +87,7 @@ void SocketUploadJob::finish(const QString &error)
 {
     if (!_finished) {
         _finished = true;
-        _listener->sendMessage(QStringLiteral("V2/UPLOAD_FILES_RESULT"), { { "localPath", _localPath }, { "error", error }, { "syncedFiles", QJsonArray::fromStringList(_syncedFiles) } });
+        SocketApi::sendMessage(_listener, QStringLiteral("V2/UPLOAD_FILES_RESULT"), { { "localPath", _localPath }, { "error", error }, { "syncedFiles", QJsonArray::fromStringList(_syncedFiles) } });
         deleteLater();
     }
 }
